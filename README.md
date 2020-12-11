@@ -12,5 +12,7 @@
 # по всем вопросам:
 
 vk: vk.com/avartur92
+
 tel: +7 (902) 678 57 88
+
 mail: artur.vinogradov1214@gmail.com

@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load materializecss %}
+{% block title %}Добавить фильм в расписание{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="">
+
+        <form method="post" id="add_form" class="center-align">
+            {% csrf_token %}
+            {{ form|materializecss }}
+            <div id="error-place"></div>
+            <button type="button" class="btn waves-effect waves-light" name="Submit"  onclick="onScheduleAdd()" >Добавить</button>
+        </form>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h6>    Доступные функции:</h6>
+        <ul class="row">
+            <li class="row col s10"><span class="col s4">Просмотреть список кинотеатров:</span> <a href="view/cinema" class="btn col s2">Перейти</a></li>
+            <li class="row col s10"><span class="col s4">Просмотреть расписание на сегодня:</span> <a href="view/schedule?date={% now "Y-m-d" %}" class="btn col s2">Перейти</a></li>
+            <li class="row col s10"><span class="col s4">Добавить кинотеатр:</span> <a href="add/cinema" class="btn col s2">Перейти</a></li>
+            <li class="row col s10"><span class="col s4">Добавить фильм в расписание:</span> <a href="add/schedule" class="btn col s2">Перейти</a></li>
+        </ul>
+    </div>
+{% endblock %}

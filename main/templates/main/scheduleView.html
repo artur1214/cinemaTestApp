@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% load materializecss %}
+{% block title %}Просмотр расписания{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <input type="date" value="{{ date }}" id="curDatePicker" class="col s5">
+        <div class="col s5">
+            <select id="cinema-pick">
+            <option value="" {% if not cinema_id %} selected {% endif %}> ----------------</option>
+            {% for cinema in cinema_list %}
+                <option value="{{ cinema.id }}" {% if cinema_id == cinema.id %}selected{% endif %}>{{cinema.title}}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <button class="btn" onclick="scheduleFilter()">Показать</button>
+    </div>
+        <table class="">
+        <thead>
+          <tr>
+              <th>Фильм</th>
+              <th>Дата</th>
+              <th>Кинотеатр</th>
+              <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for film in films %}
+          <tr id="row_id_{{ film.id }}">
+            <td>{{ film.title }}</td>
+            <td>{{ film.date_time.time }}</td>
+            <td>{{ film.cinema }}</td>
+            <td><button class="btn" value="{{ film.id }}" onclick="deleteFilm(this)">Удалить</button></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+        <p></p>
+        <a href="{% url 'schedule_add' %}"><button class="btn">Добавить</button></a>
+    </div>
+{% endblock %}

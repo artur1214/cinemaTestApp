@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load materializecss %}
+{% block title %}Добавление кинотеатра{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="">
+            <form method="post" id="add_form" class="center-align">
+                {% csrf_token %}
+                {{ form|materializecss }}
+                <div id="error-place"></div>
+                <input type="button" class="btn waves-effect waves-light" name="Submit" value="Добавить" onclick="onCinemaAdd(this)" >
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

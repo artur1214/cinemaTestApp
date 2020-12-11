@@ -1,0 +1,100 @@
+{% extends 'main/base.html' %}
+{% load materializecss %}
+{% block title %}Кинотеатры{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Кинотеатр</th>
+              <th>Адрес</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for cinema in show %}
+          <tr id="row_id_{{ cinema.id }}">
+            <td width="8%" >{{ cinema.id }}</td>
+            <td width="35%">{{ cinema.title }}</td>
+            <td width="35%">{{ cinema.adress }}</td>
+            <td width="22%"><button value="{{ cinema.id }}" onclick="openEditWindow(this)" class="btn-small">Изменить</button></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+        <p></p>
+        <a href="{% url 'cinema_add' %}"><button class="btn">Добавить</button></a>
+    </div>
+
+    <div id="edit_modal" class="modal">
+    <div class="modal_content">
+        <span class="close_modal_window">×</span>
+        <div class="row">
+            <div class="input-field col s4">
+                <input id="title_edit" type="text" class="validate">
+                <label for="title_edit">Название</label>
+            </div>
+             <div class="input-field col s4">
+                <input id="adress_edit" type="text" class="validate">
+                <label for="adress_edit">Адрес</label>
+            </div>
+            <div class="col xl5 l5 m10 s12 no-padding">
+                <div id="error-place"></div>
+                <div class="col xl5 l6 m10 s12">
+                    <button class="btn" id="modal_update" value="" onclick="updateCinema(this)">Сохранить</button>
+                </div>
+                <div class="col xl4 l6 m10 s12">
+                    <button class="btn" id="modal_delete" value="" onclick="deleteCinema(this)">Удалить</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+<style>
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+.modal .modal_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    z-index: 99999;
+}
+.modal .modal_content .close_modal_window {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+<script>
+    let modal = $('#edit_modal')
+    $(document).ready(function (){
+        $('.close_modal_window')[0].onclick = function () {
+            modal.css('display', 'none');
+
+        }
+        $(document).onclick =function () {
+            modal.css('display', 'none');
+            console.log('it work')
+        }
+    })
+</script>
+{% endblock %}
+
